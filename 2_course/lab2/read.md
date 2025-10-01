@@ -1,5 +1,8 @@
 # Лабораторная 2
 
+[lr2.py](https://github.com/whoisamir4ek/labprog/blob/main/2_course/lab2/lr2.py)
+[lr2test.py](https://github.com/whoisamir4ek/labprog/blob/main/2_course/lab2/lr2test.py)
+
 Описание
 Решение задачи  на Python с системой тестирования.
 
