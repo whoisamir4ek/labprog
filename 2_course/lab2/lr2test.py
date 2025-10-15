@@ -1,5 +1,5 @@
 import unittest
-from lr1 import resh
+from lr2 import resh
 
 class TestTwoSum(unittest.TestCase):
     
