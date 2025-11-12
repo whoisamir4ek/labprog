@@ -1,0 +1,6 @@
+2025-11-12 14:47:23,606 - INFO - Запрос курсов валют: ['USD', 'EUR']
+2025-11-12 14:47:23,792 - INFO - Успешно получены курсы для ['USD', 'EUR']
+2025-11-12 14:47:23,792 - INFO - Запрос курсов валют: ['USD', 'XYZ']
+2025-11-12 14:47:24,004 - ERROR - Ошибка структуры данных: отсутствует ключ 'Валюта XYZ не найдена'
+2025-11-12 14:47:24,008 - INFO - Запрос курсов валют: ['USD', 'EUR']
+2025-11-12 14:47:26,238 - ERROR - Ошибка запроса к API https://invalid-url.example.com: HTTPSConnectionPool(host='invalid-url.example.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)')))
