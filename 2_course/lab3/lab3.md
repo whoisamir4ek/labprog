@@ -71,7 +71,10 @@ def gen_bin_tree(height=5, root=1):
     # Это условие остановки рекурсии - достигли конца ветки
     if height <= 0:
         return None
-    
+        
+    if height == 0:
+        return root
+
     # СОЗДАНИЕ ТЕКУЩЕГО УЗЛА
     # Создаем словарь для текущего узла дерева
     # Ключ 'value' содержит значение текущего узла (root)
@@ -149,39 +152,36 @@ def gen_bin_tree(height=5, root=1):
 
 ```python
 import unittest
+from lab3 import gen_bin_tree
 
 class TestMyBinTree(unittest.TestCase):
     
-    def test_my_parameters(self):
-        """Тест для моих параметров: root=1, height=5"""
+    def test_bin_tree_values(self):
+        """Тест проверки значений узлов дерева"""
         result = gen_bin_tree(height=5, root=1)
         
-        # Проверяем корень
-        self.assertEqual(result["value"], 1)
+        # Все ожидаемые значения в порядке обхода дерева
+        expected_values = [
+            # Корень
+            1,
+            # Уровень 2
+            2, 4,
+            # Уровень 3  
+            4, 5, 8, 7,
+            # Уровень 4
+            8, 7, 10, 8, 16, 11, 14, 10
+        ]
         
-        # Проверяем второй уровень
-        self.assertEqual(result["left"]["value"], 2)   # 1 * 2
-        self.assertEqual(result["right"]["value"], 4)  # 1 + 3
+        # Функция для сбора всех значений из дерева
+        def collect_values(node):
+            if not node:
+                return []
+            return [node["value"]] + collect_values(node.get("left")) + collect_values(node.get("right"))
         
-        # Проверяем третий уровень
-        self.assertEqual(result["left"]["left"]["value"], 4)   # 2 * 2
-        self.assertEqual(result["left"]["right"]["value"], 5)  # 2 + 3
-        self.assertEqual(result["right"]["left"]["value"], 8)  # 4 * 2
-        self.assertEqual(result["right"]["right"]["value"], 7) # 4 + 3
-        
-        # Проверяем четвертый уровень (левая ветка)
-        self.assertEqual(result["left"]["left"]["left"]["value"], 8)   # 4 * 2
-        self.assertEqual(result["left"]["left"]["right"]["value"], 7)  # 4 + 3
-        self.assertEqual(result["left"]["right"]["left"]["value"], 10) # 5 * 2
-        self.assertEqual(result["left"]["right"]["right"]["value"], 8) # 5 + 3
-        
-        # Проверяем четвертый уровень (правая ветка)
-        self.assertEqual(result["right"]["left"]["left"]["value"], 16)  # 8 * 2
-        self.assertEqual(result["right"]["left"]["right"]["value"], 11) # 8 + 3
-        self.assertEqual(result["right"]["right"]["left"]["value"], 14) # 7 * 2
-        self.assertEqual(result["right"]["right"]["right"]["value"], 10) # 7 + 3
+        actual_values = collect_values(result)
+        self.assertEqual(actual_values, expected_values)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()
 ```
 
